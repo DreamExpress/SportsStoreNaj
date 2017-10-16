@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using SportsStoreNaj.Domain.Entities;
-namespace SportsStoreNaj.Domain.Abstract
+
+namespace SportsStoreNaj.Domain.Concrete
 {
-    public interface IProductRepository
+    public class EFDbContext:DbContext
     {
-        IEnumerable<Product> GetProducts();
+        public DbSet<Product> Products { get; set; }
     }
 }
