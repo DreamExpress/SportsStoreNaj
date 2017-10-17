@@ -13,10 +13,12 @@ namespace SportsStoreNaj.WebUI.Controllers
     {
 
         private IProductRepository repository;
+        private IOrderProcessor orderProcessor;
 
-        public CartController(IProductRepository repository)
+        public CartController(IProductRepository repository,IOrderProcessor orderProcessor)
         {
             this.repository = repository;
+            this.orderProcessor = orderProcessor;
         }
 
         public ViewResult Index(Cart cart,string returnUrl)
@@ -76,7 +78,27 @@ namespace SportsStoreNaj.WebUI.Controllers
 
         public ViewResult Checkout()
         {
-            return View(new ShoppingDetails());
+            return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count()==0)
+            {
+                ModelState.AddModelError("", "Sorry,Your Cart is empty!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 namespace SportsStoreNaj.Domain.Entities
 {
-    public class ShoppingDetails
+    public class ShippingDetails
     {
         [Required(ErrorMessage ="Please enter a name")]
         public string Name { get; set; }

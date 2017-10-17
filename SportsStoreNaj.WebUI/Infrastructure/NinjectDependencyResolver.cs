@@ -6,6 +6,7 @@ using Moq;
 using SportsStoreNaj.Domain.Abstract;
 using SportsStoreNaj.Domain.Concrete;
 using SportsStoreNaj.Domain.Entities;
+using System.Configuration;
 namespace SportsStoreNaj.WebUI.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
@@ -31,6 +32,11 @@ namespace SportsStoreNaj.WebUI.Infrastructure
 
             //_Kernel.Bind<IProductsRepository>().ToConstant(mock.Object);
             _Kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            EmailSettings emailSettings = new EmailSettings {
+                WriteAsFile=bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"]??"false")
+            };
+
+            _Kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
 
         public object GetService(Type serviceType)

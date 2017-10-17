@@ -122,7 +122,7 @@ namespace SportsStoreNaj.UnitTests
             );
 
             Cart cart = new Cart();
-            CartController cartController = new CartController(mock.Object);
+            CartController cartController = new CartController(mock.Object,null);
 
             cartController.AddToCart(cart, 1, null);
 
@@ -142,7 +142,7 @@ namespace SportsStoreNaj.UnitTests
             );
 
             Cart cart = new Cart();
-            CartController cartController = new CartController(mock.Object);
+            CartController cartController = new CartController(mock.Object,null);
 
             var result=cartController.AddToCart(cart, 2, "myUrl");
 
