@@ -20,7 +20,7 @@ namespace SportsStoreNaj.UnitTests
         public void Can_Paginate()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(
+            mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductId=1,Name="P1"},
                     new Product { ProductId=2,Name="P2"},
@@ -66,7 +66,7 @@ namespace SportsStoreNaj.UnitTests
         public void Can_Send_Pagination_view_Model()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(
+            mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductId=1,Name="P1"},
                     new Product { ProductId=2,Name="P2"},
@@ -97,7 +97,7 @@ namespace SportsStoreNaj.UnitTests
         public void Can_Filter_Products()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(
+            mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductId=1,Name="P1",Category="Cat1"},
                     new Product { ProductId=2,Name="P2",Category="Cat2"},
@@ -124,7 +124,7 @@ namespace SportsStoreNaj.UnitTests
         public void Can_Create_Categories()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(
+            mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product{ ProductId=1,Name="P1",Category="Apples"},
                     new Product{ ProductId=1,Name="P2",Category="Apples"},
@@ -147,7 +147,7 @@ namespace SportsStoreNaj.UnitTests
         public void Indicates_Selected_Category()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(new Product[]
+            mock.Setup(m => m.Products).Returns(new Product[]
             {
                 new Product { ProductId=1,Name="P1",Category="Apples"},
                 new Product { ProductId=2,Name="P2",Category="Oranges"},
@@ -168,7 +168,7 @@ namespace SportsStoreNaj.UnitTests
         public void Generate_Category_Specific_Product_Count()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts()).Returns(new Product[] {
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product{ ProductId=1,Name="P1",Category="Cat1"},
                 new Product{ ProductId=1,Name="P2",Category="Cat2"},
                 new Product{ ProductId=1,Name="P3",Category="Cat1"},

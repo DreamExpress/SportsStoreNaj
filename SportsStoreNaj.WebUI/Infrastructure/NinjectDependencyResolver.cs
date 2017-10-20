@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
-using Moq;
+using System.Configuration;
 using SportsStoreNaj.Domain.Abstract;
 using SportsStoreNaj.Domain.Concrete;
 using SportsStoreNaj.Domain.Entities;
-using System.Configuration;
+using SportsStoreNaj.WebUI.Infrastructure.Abstract;
+using SportsStoreNaj.WebUI.Infrastructure.Concrete;
 namespace SportsStoreNaj.WebUI.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
@@ -37,6 +38,8 @@ namespace SportsStoreNaj.WebUI.Infrastructure
             };
 
             _Kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
+
+            _Kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         public object GetService(Type serviceType)

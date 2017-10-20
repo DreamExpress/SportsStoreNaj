@@ -18,8 +18,11 @@ namespace SportsStoreNaj.WebUI.Controllers
         public PartialViewResult Menu(string category=null)
         {
             ViewBag.SelectedCategory = category;
-            var categories= repository.GetProducts().Select(x => x.Category).Distinct().OrderBy(x => x);
-            return PartialView(categories);
+            var categories= repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
+
+            string viewName ="FlexMenu";
+
+            return PartialView(viewName, categories);
         }
     }
 }

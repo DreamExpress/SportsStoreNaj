@@ -21,15 +21,15 @@ namespace SportsStoreNaj.WebUI.Controllers
         public ViewResult List(string category,int page=1)
         {
             ProductsListViewModel model = new ProductsListViewModel {
-                Products = repository.GetProducts().Where(p=>category==null||p.Category==category).Skip((page - 1) * PageSize).Take(PageSize),
+                Products = repository.Products.Where(p=>category==null||p.Category==category).Skip((page - 1) * PageSize).Take(PageSize),
 
                 PageInfo=new PagingInfo {
                     CurrentPage=page,
                     ItemsPerPage=PageSize,
                     TotalItems= 
                     category==null?
-                    repository.GetProducts().Count():
-                    repository.GetProducts().Where(p=>p.Category==category).Count()
+                    repository.Products.Count():
+                    repository.Products.Where(p=>p.Category==category).Count()
                 },
                 CurrentCategory=category
 

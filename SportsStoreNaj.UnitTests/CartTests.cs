@@ -116,7 +116,7 @@ namespace SportsStoreNaj.UnitTests
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
 
-            mock.Setup(m => m.GetProducts()).Returns(new Product[] {
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product{ ProductId=1,Name="P1",Category="Apples"}
             }.AsQueryable()
             );
@@ -136,7 +136,7 @@ namespace SportsStoreNaj.UnitTests
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
 
-            mock.Setup(m => m.GetProducts()).Returns(new Product[] {
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product{ ProductId=1,Name="P1",Category="Apples"}
             }.AsQueryable()
             );

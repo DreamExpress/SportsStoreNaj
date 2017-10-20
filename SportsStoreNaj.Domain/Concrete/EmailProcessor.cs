@@ -43,10 +43,10 @@ namespace SportsStoreNaj.Domain.Concrete
                 foreach (var line in cart.Lines)
                 {
                     var subtotal = line.Product.Price * line.Quantity;
-                    body.AppendFormat("{0}*{1} => subtotal:{2:c}", line.Quantity, line.Product.Name, subtotal);
+                    body.AppendFormat("\r\n{0}*{1} => subtotal:{2:c2}", line.Quantity, line.Product.Name, subtotal);
                 }
 
-                body.AppendFormat("Total order value:{0:c}", cart.ComputeValue()).AppendLine("---").AppendLine("Ship to:").AppendLine(shippingDetails.Name).AppendLine(shippingDetails.Line1).AppendLine(shippingDetails.Line2 ?? "").AppendLine(shippingDetails.Line3 ?? "").AppendLine(shippingDetails.City).AppendLine(shippingDetails.State ?? "").AppendLine(shippingDetails.Country).AppendLine(shippingDetails.Zip).AppendLine("---").AppendFormat("Gift wrap:{0}", shippingDetails.GiftWrap ? "Yes" : "No");
+                body.AppendFormat("\r\nTotal order value:{0:c2}", cart.ComputeValue()).AppendLine("---").AppendLine("Ship to:").AppendLine(shippingDetails.Name).AppendLine(shippingDetails.Line1).AppendLine(shippingDetails.Line2 ?? "").AppendLine(shippingDetails.Line3 ?? "").AppendLine(shippingDetails.City).AppendLine(shippingDetails.State ?? "").AppendLine(shippingDetails.Country).AppendLine(shippingDetails.Zip).AppendLine("---").AppendFormat("Gift wrap:{0}", shippingDetails.GiftWrap ? "Yes" : "No");
 
                 System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage(emailSettings.MailFrom, emailSettings.MailTo, "New order submitted!", body.ToString());
 
@@ -55,7 +55,7 @@ namespace SportsStoreNaj.Domain.Concrete
                     smtpClient.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory;
                     smtpClient.PickupDirectoryLocation = emailSettings.FileLocation;
                     smtpClient.EnableSsl = false;
-                    mailMessage.BodyEncoding = Encoding.UTF8;
+                    mailMessage.BodyEncoding = Encoding.Unicode;
                 }
 
                 smtpClient.Send(mailMessage);
